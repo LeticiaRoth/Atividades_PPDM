@@ -5,18 +5,20 @@ import 'package:flutter_application_1/pages/dashboard.dart';
 class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    //Definição das variaveis de cores, pode usar const também
     var purpleNubank = Color(0xFF7C0BB4);
     var lightPurple = Color(0xFFA55DC9);
 
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
+          //Gradiente 
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
               purpleNubank,
-              lightPurple.withOpacity(0.8),
+              lightPurple,
             ],
           ),
         ),
@@ -37,7 +39,7 @@ class Login extends StatelessWidget {
               ),
             ),
             
-            // Card Branco
+            // Card Branco, funciona como um filho
             Expanded(
               child: Container(
                 width: double.infinity,
@@ -101,6 +103,7 @@ class Login extends StatelessWidget {
                         height: 55,
                         child: ElevatedButton(
                           onPressed: () {
+                            //Navegação do botão para o Dashboard
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) => Dashboard()),
@@ -129,7 +132,7 @@ class Login extends StatelessWidget {
                         height: 55,
                         child: OutlinedButton.icon(
                           onPressed: () {},
-                          icon: Icon(Icons.g_mobiledata_rounded, color: Colors.black87, size: 28),
+                          icon: Icon(Icons.google, color: Colors.black87, size: 28),
                           label: Text('Continue com Google', style: TextStyle(color: Colors.black87)),
                           style: OutlinedButton.styleFrom(
                             side: BorderSide(color: Colors.grey[300]!),

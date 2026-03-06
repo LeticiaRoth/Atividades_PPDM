@@ -5,6 +5,10 @@ void main() {
   runApp(MyApp());
 }
 
+//Apenas anotações
+//Child - apenas um widget dentro de outro
+//Children - Vários dentro de um, como uma lista
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -33,7 +37,7 @@ class HomePage extends StatelessWidget {
                 child: Center(
                   //Exemplo de como colocar uma imagem vindo da internet
                   child: Image.network(
-                    'https://uploads.finsidersbrasil.com.br/2024/01/Nubank-Ultravioleta-1-e1625582469177.jpg',
+                    'https://www.google.com/imgres?q=logo%20nubank&imgurl=https%3A%2F%2Fwww.br104.com.br%2Fwp-content%2Fuploads%2F2021%2F05%2Fnovo-logo-nubank-fundo-roxo.jpg&imgrefurl=https%3A%2F%2Fwww.br104.com.br%2Ftecnologia%2Fnubank-divulga-nova-identidade-visual-e-melhorias-no-aplicativo%2F&docid=rCclToMqlqWd5M&tbnid=q0ros10DZU56tM&vet=12ahUKEwj58rmcmYuTAxULObkGHcZ5Jz4QnPAOegQIHBAB..i&w=1200&h=628&hcb=2&ved=2ahUKEwj58rmcmYuTAxULObkGHcZ5Jz4QnPAOegQIHBAB',
                     color: Colors.white,
                     width: 150,
                   ),

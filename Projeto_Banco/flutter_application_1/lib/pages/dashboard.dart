@@ -25,8 +25,9 @@ class Dashboard extends StatelessWidget {
             ),
           ),
 
-          // Área de scroll para o conteúdo abaixo do cabeçalho
+          // Usado apra ocupar o espaço disponivel dentro da Column, Row e Flex
           Expanded(
+            //Usado para caso precise rolar um componente, tipo uma tabeçla
             child: SingleChildScrollView(
               padding: EdgeInsets.all(24),
               child: Column(
@@ -166,6 +167,16 @@ class Dashboard extends StatelessWidget {
                         ),
                         child: Text('Income', style: TextStyle(color: Colors.grey[600], fontWeight: FontWeight.bold)),
                       ),
+                      SizedBox(height: 8),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal:20, vertical: 8),
+                        decoration: BoxDecoration(
+                          color: Colors.gray[200],
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Text('Expenses', style:TextStyle(color:Colors.gray[600], fontWeight: FontWeight.bold)),
+                      ),
+                      
                     ],
                   ),
 
@@ -179,11 +190,14 @@ class Dashboard extends StatelessWidget {
                     ),
                     child: Row(
                       children: [
+                        //Icones dentro de um circulo, utilizar o circle avayar
                         CircleAvatar(
                           backgroundColor: Colors.grey[100],
                           child: Icon(Icons.attach_money, color: Colors.grey),
                         ),
+                        
                         SizedBox(width: 16),
+
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
