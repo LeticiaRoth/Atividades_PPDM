@@ -16,6 +16,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
+//Ficar mais facil, colocar o var da color em hexadecimal e puxar o nome embaixo
+
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -36,10 +38,9 @@ class HomePage extends StatelessWidget {
               Expanded(
                 child: Center(
                   //Exemplo de como colocar uma imagem vindo da internet
-                  child: Image.network(
-                    'https://www.google.com/imgres?q=logo%20nubank&imgurl=https%3A%2F%2Fwww.br104.com.br%2Fwp-content%2Fuploads%2F2021%2F05%2Fnovo-logo-nubank-fundo-roxo.jpg&imgrefurl=https%3A%2F%2Fwww.br104.com.br%2Ftecnologia%2Fnubank-divulga-nova-identidade-visual-e-melhorias-no-aplicativo%2F&docid=rCclToMqlqWd5M&tbnid=q0ros10DZU56tM&vet=12ahUKEwj58rmcmYuTAxULObkGHcZ5Jz4QnPAOegQIHBAB..i&w=1200&h=628&hcb=2&ved=2ahUKEwj58rmcmYuTAxULObkGHcZ5Jz4QnPAOegQIHBAB',
-                    color: Colors.white,
-                    width: 150,
+                  child: Image.asset(
+                    'assets/logoNubank.png',
+                    width: 340,
                   ),
                 ),
               ),
@@ -56,7 +57,7 @@ class HomePage extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: 40),
+              SizedBox(height: 170),
 
               // Botao
               SizedBox(
@@ -83,6 +84,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
+              SizedBox(height: 50)
             ],
           ),
         ),

@@ -4,35 +4,35 @@ import 'package:flutter_application_1/pages/login.dart';
 class Onboarding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var purpleNubank = Color(0xFF7C0BB4);
-    var purpleNubank2 = Color(0xFFA55DC9);
+    var purpleNubank = Color.fromARGB(255, 145, 40, 197);
+    var purpleNubank2 = Color.fromARGB(255, 237, 219, 247);
 
     return Scaffold(
       backgroundColor: Colors.black, // Fundo preto conforme a imagem
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(24.0),
+          padding: EdgeInsets.all(27.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start, // Alinha os textos à esquerda
             children: [
               // Imagem do cartão com bordas arredondadas
               ClipRRect(
                 borderRadius: BorderRadius.circular(16),
-                child: Image.network(
-                  'https://blog.nubank.com.br/wp-content/uploads/2021/04/Cartao-Nubank-roxo.jpg',
-                  height: 300,
-                  width: double.infinity,
+                child: Image.asset(
+                  'assets/fotoCartao.png',
+                  height: 400,
+                  width: 500,
                   fit: BoxFit.cover,
                 ),
               ),
 
-              SizedBox(height: 24),
+              SizedBox(height: 14),
 
               // Título
               Text(
                 'Nubank',
                 style: TextStyle(
-                  color: purpleNubank2,
+                  color: purpleNubank,
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
                 ),
@@ -44,7 +44,7 @@ class Onboarding extends StatelessWidget {
               Text(
                 'O Nubank surgiu para desafiar os bancos tradicionais, oferecendo uma experiência 100% digital, simples e transparente que conquistou milhões de clientes na América Latina.',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: purpleNubank2,
                   fontSize: 14,
                   height: 1.5, // Melhora o espaçamento entre linhas
                 ),

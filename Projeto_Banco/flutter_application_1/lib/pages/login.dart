@@ -1,25 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/cadastro.dart';
 import 'package:flutter_application_1/pages/dashboard.dart';
- 
 
 class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //Definição das variaveis de cores, pode usar const também
     var purpleNubank = Color(0xFF7C0BB4);
-    var lightPurple = Color(0xFFA55DC9);
+    var lightPurple = Color(0xFFDAC0E7);
 
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          //Gradiente 
+          //Gradiente
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [
-              purpleNubank,
-              lightPurple,
-            ],
+            colors: [purpleNubank, lightPurple],
           ),
         ),
         child: Column(
@@ -38,17 +35,18 @@ class Login extends StatelessWidget {
                 ),
               ),
             ),
-            
+
             // Card Branco, funciona como um filho
-            Expanded(
+            Container(
               child: Container(
-                width: double.infinity,
+                width: 390,
+                height: 600,
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
+                  color: const Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.all(Radius.circular(18)),
                 ),
                 child: SingleChildScrollView(
-                  padding: EdgeInsets.all(24),
+                  padding: EdgeInsets.all(29),
                   child: Column(
                     children: [
                       Text(
@@ -65,14 +63,14 @@ class Login extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.grey[600]),
                       ),
-                      
+
                       SizedBox(height: 32),
 
                       TextField(
                         decoration: InputDecoration(
                           hintText: 'Email',
                           filled: true,
-                          fillColor: Colors.grey[100],
+                          fillColor: Colors.grey[200],
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
                             borderSide: BorderSide.none,
@@ -87,8 +85,11 @@ class Login extends StatelessWidget {
                         decoration: InputDecoration(
                           hintText: 'Senha',
                           filled: true,
-                          fillColor: Colors.grey[100],
-                          suffixIcon: Icon(Icons.visibility_off_outlined, color: Colors.grey),
+                          fillColor: Colors.grey[200],
+                          suffixIcon: Icon(
+                            Icons.visibility_off_outlined,
+                            color: const Color.fromARGB(255, 104, 102, 102),
+                          ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
                             borderSide: BorderSide.none,
@@ -100,13 +101,15 @@ class Login extends StatelessWidget {
 
                       SizedBox(
                         width: double.infinity,
-                        height: 55,
+                        height: 45,
                         child: ElevatedButton(
                           onPressed: () {
                             //Navegação do botão para o Dashboard
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => Dashboard()),
+                              MaterialPageRoute(
+                                builder: (context) => Dashboard(),
+                              ),
                             );
                           },
                           style: ElevatedButton.styleFrom(
@@ -116,14 +119,21 @@ class Login extends StatelessWidget {
                             ),
                           ),
                           child: Text(
-                            'Entrar', 
-                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)
+                            'Entrar',
+                            style: TextStyle(
+                              fontSize: 19,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
 
                       SizedBox(height: 20),
-                      Text('Ou entre com', style: TextStyle(color: Colors.grey[500])),
+                      Text(
+                        'Ou entre com',
+                        style: TextStyle(color: const Color.fromARGB(255, 114, 110, 110)),
+                      ),
                       SizedBox(height: 20),
 
                       // Botão Google
@@ -132,11 +142,20 @@ class Login extends StatelessWidget {
                         height: 55,
                         child: OutlinedButton.icon(
                           onPressed: () {},
-                          icon: Icon(Icons.google, color: Colors.black87, size: 28),
-                          label: Text('Continue com Google', style: TextStyle(color: Colors.black87)),
+                          icon: Icon(
+                            Icons.g_mobiledata_outlined,
+                            color: Colors.black87,
+                            size: 28,
+                          ),
+                          label: Text(
+                            'Continue com Google',
+                            style: TextStyle(color: Colors.black87),
+                          ),
                           style: OutlinedButton.styleFrom(
                             side: BorderSide(color: Colors.grey[300]!),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
                           ),
                         ),
                       ),
@@ -149,11 +168,20 @@ class Login extends StatelessWidget {
                         height: 55,
                         child: OutlinedButton.icon(
                           onPressed: () {},
-                          icon: Icon(Icons.apple, color: Colors.black87, size: 28),
-                          label: Text('Continue com Apple', style: TextStyle(color: Colors.black87)),
+                          icon: Icon(
+                            Icons.apple,
+                            color: Colors.black87,
+                            size: 28,
+                          ),
+                          label: Text(
+                            'Continue com Apple',
+                            style: TextStyle(color: Colors.black87),
+                          ),
                           style: OutlinedButton.styleFrom(
                             side: BorderSide(color: Colors.grey[300]!),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
                           ),
                         ),
                       ),
@@ -163,12 +191,26 @@ class Login extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('Não possui conta? ', style: TextStyle(color: Colors.grey[700])),
                           Text(
-                            'Cadastre-se',
-                            style: TextStyle(
-                              color: purpleNubank, 
-                              fontWeight: FontWeight.bold,
+                            'Não possui conta? ',
+                            style: TextStyle(color: Colors.grey[700]),
+                          ),
+                          //Jeito de fazer o texto ser clicavel 
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Cadastro(),
+                                ),
+                              );
+                            },
+                            child: Text(
+                              'Cadastre-se',
+                              style: TextStyle(
+                                color: purpleNubank,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ],

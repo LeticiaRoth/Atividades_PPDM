@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/onboarding.dart';
+import 'package:flutter_application_1/pages/dashboard.dart';
 
 class Cadastro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Definição das variáveis de cor
     var purpleNubank = Color(0xFF7C0BB4);
-    var lightPurple = Color(0xFFA55DC9);
+    var lightPurple = Color.fromARGB(255, 217, 182, 235);
     var darkPurple = Color(0xFF430363);
 
     return Scaffold(
@@ -18,30 +18,20 @@ class Cadastro extends StatelessWidget {
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [
-                darkPurple,
-                purpleNubank,
-                lightPurple,
-                Colors.white,
-              ],
-              stops: [0.0, 0.33, 0.66, 1.0],
+              colors: [darkPurple, lightPurple],
             ),
           ),
           child: Padding(
             //Afasta da tela, primeiro valor em esquerda e direita, depois em cima e baixo
-            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 40.0),
+            padding: EdgeInsets.symmetric(horizontal: 25.0, vertical: 40.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
                   child: Center(
-                    child: Image.network(
-                      'https://logodownload.org/wp-content/uploads/2019/08/nubank-logo-3.png',
-                      width: 150,
-                    ),
+                    child: Image.asset('assets/logoNubank.png', width: 350),
                   ),
                 ),
-
                 // Texto de Cabeçalho
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -49,22 +39,19 @@ class Cadastro extends StatelessWidget {
                     Text(
                       'Cadastro',
                       style: TextStyle(
-                        color: Colors.white, 
+                        color: Colors.white,
                         fontSize: 40,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 8),
+                    SizedBox(height: 6),
                     Text(
                       'Comece agora sua experiência Nubank',
-                      style: TextStyle(
-                        color: Colors.white70,
-                        fontSize: 18,
-                      ),
+                      style: TextStyle(color: const Color.fromARGB(179, 255, 255, 255), fontSize: 18),
                     ),
                   ],
                 ),
-                  
+
                 //Parte do formulário
                 Expanded(
                   child: Container(
@@ -83,7 +70,7 @@ class Cadastro extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(height: 8),
+                        SizedBox(height: 18),
                         //Email
                         TextField(
                           decoration: InputDecoration(
@@ -96,7 +83,7 @@ class Cadastro extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(height: 8),
+                        SizedBox(height: 18),
                         //Senha
                         TextField(
                           obscureText: true,
@@ -104,25 +91,29 @@ class Cadastro extends StatelessWidget {
                             hintText: 'Senha',
                             filled: true,
                             fillColor: Colors.grey[100],
-                            suffixIcon: Icon(Icons.visibility_off_outlined,
-                                color: Colors.grey),
+                            suffixIcon: Icon(
+                              Icons.visibility_off_outlined,
+                              color: Colors.grey,
+                            ),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
                               borderSide: BorderSide.none,
                             ),
                           ),
                         ),
-                        SizedBox(height: 16),
+                        SizedBox(height: 18),
                         //Botão
                         SizedBox(
                           width: 200,
-                          height: 55,
+                          height: 45,
                           child: ElevatedButton(
                             onPressed: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => Onboarding)
-                              )
+                                MaterialPageRoute(
+                                  builder: (context) => Dashboard(),
+                                ),
+                              );
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: purpleNubank,
@@ -133,7 +124,10 @@ class Cadastro extends StatelessWidget {
                             ),
                             child: Text(
                               'Entrar',
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 22
+                              ),
                             ),
                           ),
                         ),
