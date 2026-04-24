@@ -1,130 +1,58 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class TelaPost extends StatefulWidget {
   const TelaPost({super.key});
-
   @override
   State<TelaPost> createState() => _TelaPostState();
 }
 
 class _TelaPostState extends State<TelaPost> {
-  // Variavel que obversa o que o usuario digita
-  TextEditingController valorDigitado =
-      TextEditingController(); // agora vai funciobar
-
-  // Paleta de Cores
-  static const Color softBlue = Color(0xFF8CA7F4);
-  static const Color oatMilk = Color(0xFFFEF8F0);
-  static const Color deepGrey = Color(0XFF4A4A4A);
+  TextEditingController valorDigitado = TextEditingController();
+  static const Color primaryBlue = Color(0xFF1A4B8E);
+  static const Color iceBlue = Color(0xFFF0F7FF);
 
   void fazerPost() async {
-    final respostaServidor = await http.post(
+    if (valorDigitado.text.isEmpty) return;
+    final resposta = await http.post(
       Uri.parse("https://jsonserverds18.onrender.com/tasks"),
-      headers: {"Content-Type": "application/json"}, // Estou iniciando um json para o post
-      body: jsonEncode({
-        "title": valorDigitado.text // O nove resgistro da API receberá no campo Title o valor digitado
-      })
+      headers: {"Content-Type": "application/json"},
+      body: jsonEncode({"title": valorDigitado.text})
     );
-
-    if (respostaServidor.statusCode == 201 || respostaServidor.statusCode == 200){
-      ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text("Dados enviado com secesso!!", textAlign: TextAlign.center),
-        backgroundColor: softBlue,
-        behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        margin: const EdgeInsets.all(20),
-      )
-      );
+    if (resposta.statusCode == 201 || resposta.statusCode == 200) {
+      valorDigitado.clear();
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Tarefa salva!", textAlign: TextAlign.center), backgroundColor: primaryBlue, behavior: SnackBarBehavior.floating));
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: oatMilk,
-      // Navbar superior descrevendo a tela
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        centerTitle: true,
-        title: Column(
+      backgroundColor: iceBlue,
+      appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0, centerTitle: true, title: const Text("NOVA TAREFA", style: TextStyle(color: primaryBlue, fontSize: 14, fontWeight: FontWeight.bold))),
+      body: Padding(
+        padding: const EdgeInsets.all(25),
+        child: Column(
           children: [
-            const Text(
-              "NOVA TAREFA",
-              style: TextStyle(color: softBlue, fontSize: 12, fontWeight: FontWeight.bold, letterSpacing: 2),
+            const SizedBox(height: 40),
+            Container(
+              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20), boxShadow: [BoxShadow(color: primaryBlue.withOpacity(0.05), blurRadius: 15)]),
+              child: TextField(
+                controller: valorDigitado,
+                decoration: const InputDecoration(hintText: "O que vamos fazer hoje?", prefixIcon: Icon(Icons.add_task_rounded, color: primaryBlue), border: InputBorder.none, contentPadding: EdgeInsets.all(20)),
+              ),
             ),
-            Text(
-              "Adicionar ao Plano",
-              style: TextStyle(color: deepGrey.withOpacity(0.8), fontSize: 18, fontWeight: FontWeight.bold),
+            const SizedBox(height: 30),
+            SizedBox(
+              width: double.infinity, height: 60,
+              child: ElevatedButton(
+                onPressed: fazerPost,
+                style: ElevatedButton.styleFrom(backgroundColor: primaryBlue, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
+                child: const Text("ADICIONAR AO PLANO", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+              ),
             ),
           ],
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 40),
-          child: Column(
-            children: [
-              // Ilustração ou Ícone Central
-              Container(
-                padding: const EdgeInsets.all(30),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  shape: BoxShape.circle,
-                  boxShadow: [BoxShadow(color: softBlue.withOpacity(0.1), blurRadius: 20)],
-                ),
-                child: const Icon(Icons.note_add_rounded, size: 60, color: softBlue),
-              ),
-              const SizedBox(height: 50),
-
-              // Campo de Entrada Estilizado
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(25),
-                  boxShadow: [
-                    BoxShadow(color: softBlue.withOpacity(0.05), blurRadius: 15, offset: const Offset(0, 5))
-                  ],
-                ),
-                child: TextField(
-                  controller: valorDigitado,
-                  style: const TextStyle(color: deepGrey, fontWeight: FontWeight.w500),
-                  decoration: InputDecoration(
-                    hintText: "O que precisa ser feito?",
-                    hintStyle: TextStyle(color: deepGrey.withOpacity(0.4)),
-                    prefixIcon: const Icon(Icons.edit_note_rounded, color: softBlue),
-                    border: InputBorder.none,
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 40),
-
-              // Botão de Ação Estilizado
-              SizedBox(
-                width: double.infinity,
-                height: 65,
-                child: ElevatedButton(
-                  onPressed: fazerPost,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: softBlue,
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                    elevation: 5,
-                    shadowColor: softBlue.withOpacity(0.4),
-                  ),
-                  child: const Text(
-                    "ADICIONAR TAREFA",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, letterSpacing: 1),
-                  ),
-                ),
-              ),
-            ],
-          ),
         ),
       ),
     );
